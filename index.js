@@ -1,8 +1,7 @@
 const Discord = require('discord.js');
 const { Client,RichEmbed } = require('discord.js');
 const client = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
-const Token = require('./config.json')
-client.login(Token.token);
+client.login(process.env.token);
 client.on('ready', x => {
   const channel = client.channels.cache.get('729359717616320663')
   console.log(channel)
