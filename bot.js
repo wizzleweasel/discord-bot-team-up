@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const { Client,RichEmbed } = require('discord.js');
 const client = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
-client.login("NDY3NTczMDk3NDkxMzMzMTIz.XwkfUw.wBzSllqXkbMpj3nc0FMAb23IMGc");
+client.login("");
 client.on('ready', x => {
   const channel = client.channels.cache.get('729359717616320663')
   //console.log(channel)
@@ -67,9 +67,33 @@ client.on('message',m => {
         m.reply(`Mau Check Role apa Dev <@${m.author.id}>`)
       }    
     }
+    
     if(command == "info"){
       if(args[0]){
-        
+        let imgURL = `https://cdn.discordapp.com/avatars/${channel.members.find(x => x.id == args[0].substr(3,(args[0].length)-4)).id}/${channel.members.find(x => x.id == args[0].substr(3,(args[0].length)-4)).user.avatar}.webp`
+        let getUser = channel.members.find(x => x.id == args[0].substr(3,(args[0].length)-4))
+        console.log(args[0])
+        const infoProfile = new Discord.MessageEmbed()
+          .setColor(getUser.displayHexColor)
+          .setTitle('Developer Info')
+          .setURL('https://discord.gg/fEPAA2x')
+          .setAuthor(getUser.displayName, imgURL, 'https://discord.gg/fEPAA2x')
+          .setDescription('deskriptit')
+          .setThumbnail(imgURL)
+          .addFields(
+            { name: 'In development', value: 'In development' },
+            { name: '\u200B', value: '\u200B' },
+            { name: 'In development', value: 'a\nb\nc\nd', inline: true },
+            { name: 'In development', value: 'a\nb\nc\nd', inline: true },
+          )
+          .addField('In development', 'In development', true)
+          .setImage(imgURL)
+          .setTimestamp()
+          .setFooter('In development', imgURL);
+
+        console.log(channel.members.find(x => x.id == args[0].substr(3,(args[0].length)-4)))
+        channel.send(infoProfile)
+        console.log(imgURL)
       }else{
         channel.send(`Mau cari info siapa Dev <@${m.author.id}>`)
       }

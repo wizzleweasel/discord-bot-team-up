@@ -16,3 +16,8 @@ String.prototype.filterword = function (filter){
 
 
 hello.filterword(["hello","gg"])
+
+
+x = "<@!210834015165480970>"
+
+console.log(x.substr(3,18))
