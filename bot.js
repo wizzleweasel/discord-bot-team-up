@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const { Client,RichEmbed } = require('discord.js');
 const client = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
-client.login("");
+client.login("NDY3NTczMDk3NDkxMzMzMTIz.XwnUlA.dXvIKeyuU87JUqME3BiWaelnMnM");
 client.on('ready', x => {
   const channel = client.channels.cache.get('729359717616320663')
   //console.log(channel)
@@ -99,30 +99,26 @@ client.on('message',m => {
       }
     }
   }
-  //console.log(`this is args ${args} and this one is command ${command}`)
-  //console.log(args)
-  //console.log(args[2])
+  console.log(`this is args ${args} and this one is command ${command}`)
+  console.log(args)
+  console.log("======================")
+  console.log(args[2])
   try {
     let bad = ["remot","mouse"]
     gg = "anjing|babi|monyet|kunyuk|bajingan|asu|bangsat|kampret|kontol|memek|ngentot|ngewe|perek|pecun|bencong|banci|jablay|maho|bego|goblok|idiot|geblek|orang gila|gila|sinting|tolol|sarap|udik|kampungan|kamseupay|buta|budek|bolot|jelek|setan|iblis|keparat|ngehe|bejad|gembel|brengsek|tai|sompret"
-    if(m.author.bot === false && m.content.match(/anjing|babi|monyet|kunyuk|bajingan|asu|bangsat|kampret|kontol|memek|ngentot|ngewe|perek|pecun|bencong|banci|jablay|maho|bego|goblok|idiot|geblek|orang gila|gila|sinting|tolol|sarap|udik|kampungan|kamseupay|buta|budek|bolot|jelek|setan|iblis|keparat|ngehe|bejad|gembel|brengsek|tai|sompret/gi)!==null){
-      m.reply(`Mas jangan ngomong ${m.content.match(/anjing|babi|monyet|kunyuk|bajingan|asu|bangsat|kampret|kontol|memek|ngentot|ngewe|perek|pecun|bencong|banci|jablay|maho|bego|goblok|idiot|geblek|orang gila|gila|sinting|tolol|sarap|udik|kampungan|kamseupay|buta|budek|bolot|jelek|setan|iblis|keparat|ngehe|bejad|gembel|brengsek|tai|sompret/g)} ya !!
+    if(m.author.bot === false && m.content.match(/anjing|babi|monyet|kunyuk|bajingan|asu|bangsat|kampret|kontol|memek|ngentot|ngewe|perek|pecun|bencong|banci|jablay|maho|bego|goblok|idiot|geblek|orang gila|gila|sinting|tolol|sarap|udik|kampungan|kamseupay|buta|budek|bolot|jelek|setan|iblis|keparat|ngehe|bejad|gembel|brengsek|tai|sompret/i)!==null){
+      m.reply(`Mas jangan ngomong ${m.content.match(/anjing|babi|monyet|kunyuk|bajingan|asu|bangsat|kampret|kontol|memek|ngentot|ngewe|perek|pecun|bencong|banci|jablay|maho|bego|goblok|idiot|geblek|orang gila|gila|sinting|tolol|sarap|udik|kampungan|kamseupay|buta|budek|bolot|jelek|setan|iblis|keparat|ngehe|bejad|gembel|brengsek|tai|sompret/i)} ya !!
       
 Mohon disensor pake * banyak banyak`)
     m.delete() //This is the original message that triggered the message event.
     String.prototype.replaceAt = function(index, replacement) {
-      console.log(this.substr(0,index))
-      console.log(replacement)
-      console.log(this.substr(index + replacement.length))
       return this.substr(0, index) + replacement + this.substr(index + replacement.length);
     }
-    y.replaceAt(0, "*&#")
-    let msgQuery = m.content.replace(/anjing|babi|monyet|kunyuk|bajingan|asu|bangsat|kampret|kontol|memek|ngentot|ngewe|perek|pecun|bencong|banci|jablay|maho|bego|goblok|idiot|geblek|orang gila|gila|sinting|tolol|sarap|udik|kampungan|kamseupay|buta|budek|bolot|jelek|setan|iblis|keparat|ngehe|bejad|gembel|brengsek|tai|sompret/g,(y)=> {
+    let msgQuery = `>>> ${m.content.replace(/anjing|babi|monyet|kunyuk|bajingan|asu|bangsat|kampret|kontol|memek|ngentot|ngewe|perek|pecun|bencong|banci|jablay|maho|bego|goblok|idiot|geblek|orang gila|gila|sinting|tolol|sarap|udik|kampungan|kamseupay|buta|budek|bolot|jelek|setan|iblis|keparat|ngehe|bejad|gembel|brengsek|tai|sompret/i,(y)=> {
       return y.replaceAt(0, "*&#")
-    })
-    m.channel.send(msgQuery) 
-    }else{
-      console.log(m.content.match(/anjing|babi|monyet|kunyuk|bajingan|asu|bangsat|kampret|kontol|memek|ngentot|ngewe|perek|pecun|bencong|banci|jablay|maho|bego|goblok|idiot|geblek|orang gila|gila|sinting|tolol|sarap|udik|kampungan|kamseupay|buta|budek|bolot|jelek|setan|iblis|keparat|ngehe|bejad|gembel|brengsek|tai|sompret/g))
+    })}`
+    m.channel.send(`Maksud Dev <@${m.author.id}> ini lohhh 
+${msgQuery}`) 
     }
     if(m.toLowerCase().split(' ')[0]){
 
