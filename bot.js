@@ -1,18 +1,26 @@
 const Discord = require('discord.js');
 const { Client,RichEmbed } = require('discord.js');
 const client = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
-client.login("NDY3NTczMDk3NDkxMzMzMTIz.XwnUlA.dXvIKeyuU87JUqME3BiWaelnMnM");
+const fs = require("fs");
+let badword = JSON.parse(fs.readFileSync("./badword.json", "utf8"));
+let emojiDB = JSON.parse(fs.readFileSync("./emoji.json", "utf8"));
+
+console.log(client.actions.GuildMemberRemove)
 client.on('ready', x => {
   const channel = client.channels.cache.get('729359717616320663')
   //console.log(channel)
-  //console.log(`Logged in as ${client.user.tag}!`);
+  //console.log(`Logged in as ${client.user.tag}!`) ;
   //console.log(channel.guild.roles.cache.find(o => o.name == "C#"))
   //channel.send('Halo Semua, Aku anak baru jangan di bully yaaaaaaaaaaa :rofl:')
 }); 
 
+client.on('guildMemberRemove',(member) => {
+     member.guild.channels.cache.find(ch => ch.name ==='📰developer-member-logs').send(`**${member}** dengan username _**${member.user.tag}**_ Telah Meninggalkan Server Team UP`);
+})
 
 client.on('guildMemberAdd', member => {
   const channel =  member.guild.channels.cache.find(ch => ch.name === '🏡general');
+  member.guild.channels.cache.find(ch => ch.name ==='📰developer-member-logs').send(`Selamat Datang **${member}** di Team UP Server, kamu memiliki username _**${member.user.tag}**_ Silahkan kunjungi <#724165603740483638> Untuk Ngobrol Bareng dan melihat info server `);
   if (!channel) return;
   channel.send(`Selamat Datang di Server Team UP Dev ${member}, Oh iya jangan lupa tag skill kamu di <#729575194187923458> ya !!\n
   Server Info :
@@ -38,6 +46,14 @@ client.on('guildMemberAdd', member => {
 });
 
 // Log our bot in using the token from https://discordapp.com/developers/applications/me
+function typoword(x){
+  x[x.length -1] == x[x.length -2] ? x = x.substring(0,x.length -1) : x
+  if(x[x.length -1] == x[x.length -2]){
+    typoword(x)
+  }else{
+    return x
+  }
+}
 
 client.on('message',m => {
   const args = m.content.split(/ +/);
@@ -98,27 +114,43 @@ client.on('message',m => {
         channel.send(`Mau cari info siapa Dev <@${m.author.id}>`)
       }
     }
+     if(command == "emo"){
+       console.log(emojiDB)
+      if(args[0]){
+        emojiDB[args[0]] ? channel.send({ files: [`./assets/emoji/${emojiDB[args[0]]}.gif`] }) : channel.send(`Mohon ma'af Dev <@${m.author.id}>, Emoji yang anda cari tidak ada didatabase kami`)  
+      }else{
+        channel.send(`Mohon ma'af Dev <@${m.author.id}> Perlu mengetikan nama Emoji eg: emo \`<emoji_name>\``)
+      }
+      m.delete()
+    }
   }
   console.log(`this is args ${args} and this one is command ${command}`)
   console.log(args)
   console.log("======================")
   console.log(args[2])
   try {
+    text = ''
+    console.log(m.content[0] == ">")
+    if(m.content[0] == ">") return;
+    if(m.content[0] == "!") return
+    m.content.toLowerCase().split(' ').forEach(y=> {
+      if (badword[y]){
+        text += `${badword[y]} `
+      }else{
+        text+= `${y} `
+      }
+    })
+    console.log(text)
+    console.log(`this is ${m.content}`)
     let bad = ["remot","mouse"]
     gg = "anjing|babi|monyet|kunyuk|bajingan|asu|bangsat|kampret|kontol|memek|ngentot|ngewe|perek|pecun|bencong|banci|jablay|maho|bego|goblok|idiot|geblek|orang gila|gila|sinting|tolol|sarap|udik|kampungan|kamseupay|buta|budek|bolot|jelek|setan|iblis|keparat|ngehe|bejad|gembel|brengsek|tai|sompret"
-    if(m.author.bot === false && m.content.match(/anjing|babi|monyet|kunyuk|bajingan|asu|bangsat|kampret|kontol|memek|ngentot|ngewe|perek|pecun|bencong|banci|jablay|maho|bego|goblok|idiot|geblek|orang gila|gila|sinting|tolol|sarap|udik|kampungan|kamseupay|buta|budek|bolot|jelek|setan|iblis|keparat|ngehe|bejad|gembel|brengsek|tai|sompret/i)!==null){
-      m.reply(`Mas jangan ngomong ${m.content.match(/anjing|babi|monyet|kunyuk|bajingan|asu|bangsat|kampret|kontol|memek|ngentot|ngewe|perek|pecun|bencong|banci|jablay|maho|bego|goblok|idiot|geblek|orang gila|gila|sinting|tolol|sarap|udik|kampungan|kamseupay|buta|budek|bolot|jelek|setan|iblis|keparat|ngehe|bejad|gembel|brengsek|tai|sompret/i)} ya !!
-      
-Mohon disensor pake * banyak banyak`)
+    
+    if(m.author.bot === false && `${m.content.toLowerCase()} ` !== text){
     m.delete() //This is the original message that triggered the message event.
-    String.prototype.replaceAt = function(index, replacement) {
-      return this.substr(0, index) + replacement + this.substr(index + replacement.length);
-    }
-    let msgQuery = `>>> ${m.content.replace(/anjing|babi|monyet|kunyuk|bajingan|asu|bangsat|kampret|kontol|memek|ngentot|ngewe|perek|pecun|bencong|banci|jablay|maho|bego|goblok|idiot|geblek|orang gila|gila|sinting|tolol|sarap|udik|kampungan|kamseupay|buta|budek|bolot|jelek|setan|iblis|keparat|ngehe|bejad|gembel|brengsek|tai|sompret/i,(y)=> {
-      return y.replaceAt(0, "*&#")
-    })}`
+    
+
     m.channel.send(`Maksud Dev <@${m.author.id}> ini lohhh 
-${msgQuery}`) 
+>>> ${text}`) 
     }
     if(m.toLowerCase().split(' ')[0]){
 
