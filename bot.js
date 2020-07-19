@@ -278,3 +278,33 @@ client.on('messageReactionAdd',(rct,user)=> {
   
 })
 
+client.on('messageReactionRemove', async(rct,mbr) => {
+  let remRole = (rctMap) => {
+    if(rctMap.hasOwnProperty(rct.emoji.id)){
+      let rID = rctMap[reaction.emoji.id];
+      let role = rct.message.guild.roles.cache.get(rID);
+      let member = rct.message.guild.members.cache.get(mbr.id);
+      if(role && mbr) {
+        mbr.roles.remove(role)
+      }
+    }
+  }
+  if(rct.message.partial) {
+    await rct.message.fetch();
+    let { id } = rct.message;
+    try {
+      let theMsg = await MessageModel.findOne({ messageId : id })
+      if (theMsg) {
+        cachedMessageReactions.set(id, theMsg.emojiMap);
+        let { emojiRoleMappings } = theMsg;
+        removeMemberRole(emojiRoleMappings);
+      } 
+    }catch(err){
+      console.log(err)
+    }
+  }else {
+    let emojiRoleMappings = cachedMessageReactions.get(reaction.message.id)
+    removeMemberRole(emojiRoleMappings);
+  }
+})
+
