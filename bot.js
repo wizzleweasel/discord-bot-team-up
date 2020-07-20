@@ -130,9 +130,9 @@ client.on('message',m => {
   console.log(args[2])
   try {
     text = ''
-    console.log(m.content[0] == ">")
+    if(m.channel.id === '734636465014702080') return;
     if(m.content[0] == ">") return;
-    if(m.content[0] == "!") return
+    if(m.content[0] == "!") return;
     m.content.toLowerCase().split(' ').forEach(y=> {
       if (badword[y]){
         text += `${badword[y]} `
