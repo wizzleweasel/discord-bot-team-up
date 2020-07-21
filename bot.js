@@ -131,6 +131,8 @@ client.on('message',m => {
   try {
     text = ''
     if(m.channel.id === '734636465014702080') return;
+    if(m.channel.name === '🦊playground-area') return;
+    if(m.channel.name === '🔏moderator-area') return;
     if(m.content[0] == ">") return;
     if(m.content[0] == "!") return;
     m.content.toLowerCase().split(' ').forEach(y=> {
