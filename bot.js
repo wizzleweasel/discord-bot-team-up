@@ -271,11 +271,7 @@ client.on('messageReactionAdd',(rct,user)=> {
     mbr.roles.add(role.id).then(o => {
       console.log(`User ${o.user.username} telah mengambil role ${role.id}`)
     }).catch(err => console.error) 
-    /** 
-    console.log(rct.emoji)**/
-    //console.log(rct.emoji)
   }else {
-    //console.log(rct)
   }
   
 })
