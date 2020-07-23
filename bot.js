@@ -8,10 +8,6 @@ let emojiDB = JSON.parse(fs.readFileSync("./emoji.json", "utf8"));
 console.log(client.actions.GuildMemberRemove)
 client.on('ready', x => {
   const channel = client.channels.cache.get('729359717616320663')
-  //console.log(channel)
-  //console.log(`Logged in as ${client.user.tag}!`) ;
-  //console.log(channel.guild.roles.cache.find(o => o.name == "C#"))
-  //channel.send('Halo Semua, Aku anak baru jangan di bully yaaaaaaaaaaa :rofl:')
 }); 
 
 client.on('guildMemberRemove',(member) => {
