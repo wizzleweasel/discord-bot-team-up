@@ -41,7 +41,6 @@ client.on('guildMemberAdd', member => {
   }).catch(err => console.error) 
 });
 
-// Log our bot in using the token from https://discordapp.com/developers/applications/me
 function typoword(x){
   x[x.length -1] == x[x.length -2] ? x = x.substring(0,x.length -1) : x
   if(x[x.length -1] == x[x.length -2]){
