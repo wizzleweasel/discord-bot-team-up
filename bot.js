@@ -143,7 +143,7 @@ client.on('message',m => {
     gg = "anjing|babi|monyet|kunyuk|bajingan|asu|bangsat|kampret|kontol|memek|ngentot|ngewe|perek|pecun|bencong|banci|jablay|maho|bego|goblok|idiot|geblek|orang gila|gila|sinting|tolol|sarap|udik|kampungan|kamseupay|buta|budek|bolot|jelek|setan|iblis|keparat|ngehe|bejad|gembel|brengsek|tai|sompret"
     
     if(m.author.bot === false && `${m.content.toLowerCase()} ` !== text){
-    m.delete() //This is the original message that triggered the message event.
+    m.delete()
     
 
     m.channel.send(`Maksud Dev <@${m.author.id}> ini lohhh 
