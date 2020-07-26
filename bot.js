@@ -153,7 +153,7 @@ client.on('message',m => {
 
     }
   } catch (error) {
-    //console.log("roles undefined")
+ 
   }
 })
 client.on('message',(msg) => {
