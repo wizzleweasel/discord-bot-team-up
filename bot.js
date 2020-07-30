@@ -4,7 +4,7 @@ const client = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 const fs = require("fs");
 let badword = JSON.parse(fs.readFileSync("./badword.json", "utf8"));
 let emojiDB = JSON.parse(fs.readFileSync("./emoji.json", "utf8"));
-client.login("NDY3NTczMDk3NDkxMzMzMTIz.Xw_J6w.dLqlJM2OjMZDDTUkJczkiYhz6_4");
+
 console.log(client.actions.GuildMemberRemove)
 client.on('ready', x => {
   const channel = client.channels.cache.get('729359717616320663')
@@ -119,7 +119,7 @@ client.on('message',m => {
       m.delete()
     }
   }
-  
+
   console.log(`this is args ${args} and this one is command ${command}`)
   console.log(args)
   console.log("======================")
@@ -129,6 +129,7 @@ client.on('message',m => {
     if(m.channel.id === '734636465014702080') return;
     if(m.channel.name === '🦊playground-area') return;
     if(m.channel.name === '🔏moderator-area') return;
+    if(m.channel.name === '❓help-desk') return;
     if(m.content[0] == ">") return;
     if(m.content[0] == "!") return;
     m.content.toLowerCase().split(' ').forEach(y=> {
