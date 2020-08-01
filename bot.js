@@ -2,9 +2,10 @@ const Discord = require('discord.js');
 const { Client,RichEmbed } = require('discord.js');
 const client = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 const fs = require("fs");
-let badword = JSON.parse(fs.readFileSync("./badword.json", "utf8"));
-let emojiDB = JSON.parse(fs.readFileSync("./emoji.json", "utf8"));
-
+const { resolve } = require('path');
+let badword = JSON.parse(fs.readFileSync("badword.json", "utf8"));
+let emojiDB = JSON.parse(fs.readFileSync("emoji.json", "utf8"));
+client.login("NDY3NTczMDk3NDkxMzMzMTIz.W0mTYQ.PpwHR3Cfb0fw4B-ZQ_2n1OUVmwk");
 console.log(client.actions.GuildMemberRemove)
 client.on('ready', x => {
   const channel = client.channels.cache.get('729359717616320663')
@@ -109,6 +110,40 @@ client.on('message',m => {
         channel.send(`Mau cari info siapa Dev <@${m.author.id}>`)
       }
     }
+
+    if(command == "poll"){
+
+        if(args[1]){
+          if(parseInt(args[1])>9) return;
+          let voteIt = ['1️⃣','2️⃣','3️⃣','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣'];
+          //console.log(args[0])
+          //channel.send(args[0])
+          channel.messages.fetch(args[0]).then(pesan => {
+            for(let i=0,p=Promise.resolve();i<parseInt(args[1]);i++){
+              p = p.then(()=>{
+                setTimeout(()=>{
+                  pesan.react(voteIt[i]);
+                  resolve();
+                },i*300)
+              })
+            }
+          })
+          .then(()=>{
+            m.delete()
+          }).catch(error=>{
+            console.log(error)
+          })
+          if(m.id === args[0]){
+            //console.log(m)
+            //channel.send(args[1])
+            //m.react('1️⃣');
+          }
+        }else{
+          channel.send(`Masukan ID posting atau banyak vote`)
+        }
+      
+    }
+    
      if(command == "emo"){
        console.log(emojiDB)
       if(args[0]){
@@ -119,11 +154,11 @@ client.on('message',m => {
       m.delete()
     }
   }
-
-  console.log(`this is args ${args} and this one is command ${command}`)
-  console.log(args)
-  console.log("======================")
-  console.log(args[2])
+  //console.log(m)
+  //console.log(`this is args ${args} and this one is command ${command}`)
+  //console.log(args)
+  //console.log("======================")
+  //console.log(args[2])
   try {
     text = ''
     if(m.channel.id === '734636465014702080') return;
@@ -140,7 +175,7 @@ client.on('message',m => {
       }
     })
     console.log(text)
-    console.log(`this is ${m.content}`)
+    //console.log(`this is ${m.content}`)
     let bad = ["remot","mouse"]
     gg = "anjing|babi|monyet|kunyuk|bajingan|asu|bangsat|kampret|kontol|memek|ngentot|ngewe|perek|pecun|bencong|banci|jablay|maho|bego|goblok|idiot|geblek|orang gila|gila|sinting|tolol|sarap|udik|kampungan|kamseupay|buta|budek|bolot|jelek|setan|iblis|keparat|ngehe|bejad|gembel|brengsek|tai|sompret"
     
@@ -254,8 +289,8 @@ client.on('messageReactionAdd',(rct,user)=> {
   if (rct.message.channel.id !== "729575194187923458") return;
   if (!rct.message.guild) return;
   if (rct.message.id === '729582282242785370'){
-    console.log("success??")
-    console.log(rct.emoji)
+    //console.log("success??")
+    //console.log(rct.emoji)
     var roleN = rct.emoji.name;
     roleN.toLowerCase().split('_')[0] === 'c1' ? roleN = 'C_P' :  roleN.toLowerCase().split('_')[0] === 'c2' ? roleN = 'C++_P' : roleN.toLowerCase().split('_')[0] === 'c3' ? roleN = 'C#_P' :  roleN.toLowerCase().split('_')[0] === 'net' ? roleN = '.Net' : roleN.toLowerCase().split('_')[0] === 'lua' ? roleN = '.Lua' : roleN = roleN
     var role = rct.message.guild.roles.cache.find(o => o.name.toLowerCase() === roleN.toLowerCase().split('_')[0]);
