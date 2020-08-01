@@ -5,7 +5,7 @@ const fs = require("fs");
 const { resolve } = require('path');
 let badword = JSON.parse(fs.readFileSync("badword.json", "utf8"));
 let emojiDB = JSON.parse(fs.readFileSync("emoji.json", "utf8"));
-client.login("NDY3NTczMDk3NDkxMzMzMTIz.W0mTYQ.PpwHR3Cfb0fw4B-ZQ_2n1OUVmwk");
+
 console.log(client.actions.GuildMemberRemove)
 client.on('ready', x => {
   const channel = client.channels.cache.get('729359717616320663')
