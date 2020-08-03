@@ -5,7 +5,6 @@ const fs = require("fs");
 const { resolve } = require('path');
 let badword = JSON.parse(fs.readFileSync("badword.json", "utf8"));
 let emojiDB = JSON.parse(fs.readFileSync("emoji.json", "utf8"));
-
 console.log(client.actions.GuildMemberRemove)
 client.on('ready', x => {
   const channel = client.channels.cache.get('729359717616320663')
@@ -82,7 +81,8 @@ client.on('message',m => {
     
     if(command == "info"){
       if(args[0]){
-        let imgURL = `https://cdn.discordapp.com/avatars/${channel.members.find(x => x.id == args[0].substr(3,(args[0].length)-4)).id}/${channel.members.find(x => x.id == args[0].substr(3,(args[0].length)-4)).user.avatar}.webp`
+        let imgURL ='dummy';
+        //let imgURL = `https://cdn.discordapp.com/avatars/${channel.members.find(x => x.id == args[0].substr(3,(args[0].length)-4)).id}/${channel.members.find(x => x.id == args[0].substr(3,(args[0].length)-4)).user.avatar}.webp`
         let getUser = channel.members.find(x => x.id == args[0].substr(3,(args[0].length)-4))
         console.log(args[0])
         const infoProfile = new Discord.MessageEmbed()
