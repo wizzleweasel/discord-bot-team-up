@@ -5,18 +5,19 @@ const fs = require("fs");
 const { resolve } = require('path');
 let badword = JSON.parse(fs.readFileSync("badword.json", "utf8"));
 let emojiDB = JSON.parse(fs.readFileSync("emoji.json", "utf8"));
+import { greet } from '/messages.js'
 console.log(client.actions.GuildMemberRemove)
 client.on('ready', x => {
   const channel = client.channels.cache.get('729359717616320663')
 }); 
 
 client.on('guildMemberRemove',(member) => {
-     member.guild.channels.cache.find(ch => ch.name ==='📰developer-member-logs').send(`**${member}** dengan username _**${member.user.tag}**_ Telah Meninggalkan Server Team UP`);
+     member.guild.channels.cache.find(ch => ch.name ==='📰member-logs').send(`**${member}** dengan username _**${member.user.tag}**_ Telah Meninggalkan Server Team UP`);
 })
 
 client.on('guildMemberAdd', member => {
   const channel =  member.guild.channels.cache.find(ch => ch.name === '🏡general');
-  member.guild.channels.cache.find(ch => ch.name ==='📰developer-member-logs').send(`Selamat Datang **${member}** di Team UP Server, kamu memiliki username _**${member.user.tag}**_ Silahkan kunjungi <#724165603740483638> Untuk Ngobrol Bareng dan melihat info server `);
+  member.guild.channels.cache.find(ch => ch.name ==='📰member-logs').send(`Selamat Datang **${member}** di Team UP Server, kamu memiliki username _**${member.user.tag}**_ Silahkan kunjungi <#724165603740483638> Untuk Ngobrol Bareng dan melihat info server `);
   if (!channel) return;
   channel.send(`Selamat Datang di Server Team UP Dev ${member}, Oh iya jangan lupa tag skill kamu di <#729575194187923458> ya !!\n
   Server Info :
